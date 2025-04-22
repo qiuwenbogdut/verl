@@ -43,6 +43,10 @@ def _default_compute_score(data_source, solution_str, ground_truth, extra_info=N
     elif data_source in ['hiyouga/geometry3k']:
         from . import geo3k
         res = geo3k.compute_score(solution_str, ground_truth)
+        
+    elif data_source in ['simplelr_qwen']:# 补充自定义的reward function 该数据集和reward 得分计算函数 来自 simpleRL 项目
+        from . import hf_math_verify
+        res = hf_math_verify.compute_score(solution_str, ground_truth)
     else:
         raise NotImplementedError(f"Reward function is not implemented for {data_source=}")
 

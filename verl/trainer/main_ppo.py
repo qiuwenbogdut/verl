@@ -49,6 +49,10 @@ def get_custom_reward_fn(config):
     reward_kwargs = dict(reward_fn_config.get("reward_kwargs", {}))
 
     def wrapped_fn(*args, **kwargs):
+        # 将输入的参数打印出来
+        print(f"Input arguments: {args}")
+        print(f"Input keyword arguments: {kwargs}")
+        print(f"Reward kwargs: {reward_kwargs}")
         return raw_fn(*args, **kwargs, **reward_kwargs)
 
     return wrapped_fn
